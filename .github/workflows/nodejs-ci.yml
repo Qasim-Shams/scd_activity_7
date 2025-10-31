@@ -20,13 +20,11 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci || npm install
 
-      - name: Run Unit & Integration Tests
-        run: npm test
+      - name: Run Jest Tests (with npx)
+        run: npx jest --verbose
 
-      - name: Display Jest Test Report
+      - name: Display Test Summary
         if: always()
-        run: |
-          echo "---- TEST REPORT ----"
-          cat ./jest-report.log || echo "No report found"
+        run: echo "Jest tests completed"
